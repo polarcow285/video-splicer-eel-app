@@ -16,12 +16,25 @@ class Clip:
         self.path = path
         self.date = date
         self.thumbnail = thumbnail
+        
     def __lt__(self, other):
         return self.date < other 
     def __gt__(self, other):
         return self.date > other
     def __eq__(self, other):
         return self.date == other
+class Video:
+    def __init__(self, name, clips):
+        self.name = name
+        self.clips = clips #DOESN'T USE THE CLIP OBJECT...HAVE TO THINK
+        self.size = len(clips)
+    def add_clip(self, clip):
+        self.clips.append(clip)
+        self.size += 1
+    def print_clips(self):
+        print("Video " + self.name)
+        for index, c in enumerate(self.clips):
+            print("clip " + str(index+1) + " " + c.path)
 @eel.expose
 def get_path():
     root = Tk()
@@ -69,8 +82,11 @@ def extract_thumbnail(file_path):
 @eel.expose
 def get_thumbnails():
     clips.sort()
-    return [clip.thumbnail for clip in clips]
+    return [[clip.thumbnail, clip.path] for clip in clips]
 
+@eel.expose
+def create_group(selectedClips, group_name):
+    video = Video(group_name, selectedClips)
 #maybe send over list of clip objects? for javascript to handle with 
 #search up matieral ui but for javascript
 #1. try to display thumbnail after uploading it 
@@ -91,4 +107,4 @@ def get_thumbnails():
 
 
 
-eel.start('index.html', size=(400, 400))
+eel.start('index.html', size=(800, 800))

@@ -19,12 +19,13 @@
         <div id="thumbnails"></div>
         <form
         className="row"
-        >
-        <input
-          id="greet-input"
+        onsubmit = "createGroup(event); return false"
+        >       
+          <input
+          id="group_name_input"
           placeholder="Enter group name..."
         />
-        <button type="submit">Create Group</button>
+        <button type="submit">Create Group</button>   
       </form>
       </div>    
     </body>
