@@ -25,6 +25,9 @@ h1 {
 .selected {
   border: 2px solid red;
 }
+.grouped {
+  border: 2px solid gray;
+}
 .thumbnails {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -69,6 +72,6 @@ button:active {
 #greet-input {
   margin-right: 5px;
 }
-.thumbnail.checked {
+.thumbnail.selected {
   border: 2px solid red;
 }
